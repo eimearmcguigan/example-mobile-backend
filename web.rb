@@ -319,33 +319,6 @@ def generate_payment_response(payment_intent)
   end
 end
 
-# ===== Helpers
-
-# Our example apps sell emoji apparel; this hash lets us calculate the total amount to charge.
-EMOJI_STORE = {
-  "👕" => 2000,
-  "👖" => 4000,
-  "👗" => 3000,
-  "👞" => 700,
-  "👟" => 600,
-  "👠" => 1000,
-  "👡" => 2000,
-  "👢" => 2500,
-  "👒" => 800,
-  "👙" => 3000,
-  "💄" => 2000,
-  "🎩" => 5000,
-  "👛" => 5500,
-  "👜" => 6000,
-  "🕶" => 2000,
-  "👚" => 2500,
-}
-
-def price_lookup(product)
-  price = EMOJI_STORE[product]
-  raise "Can't find price for %s (%s)" % [product, product.ord.to_s(16)] if price.nil?
-  return price
-end
 
 def calculate_price(products, shipping)
   amount = 1099  # Default amount.
@@ -377,8 +350,8 @@ def currency_for_country(country)
     'usd'
   when 'mx'
     'mxn'
-  when 'my'
-    'myr'
+  when 'uk'
+    'gbp'
   when 'at', 'be', 'de', 'es', 'it', 'nl', 'pl'
     'eur'
   when 'au'
